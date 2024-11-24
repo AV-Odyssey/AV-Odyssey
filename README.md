@@ -56,8 +56,11 @@ Please refer to our project page https://av-odyssey.github.io/ for exploring mor
   </div>
 </div>
 
-- [Audio 1](assets/31_6_1.wav)
+- [Audio 1](c)
 - [Audio 2](assets/31_6_2.wav)
+
+- <video width="80%" height="auto" style="display: block; margin: 0 auto;" controls autoplay loop src="assets/31_6_1.mp3"></video>
+
 
 ### 📍AV-Odyssey Bench
 
