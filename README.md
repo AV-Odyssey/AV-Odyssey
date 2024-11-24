@@ -56,7 +56,8 @@ Please refer to our project page https://av-odyssey.github.io/ for exploring mor
   </div>
 </div>
 
-
+- [Audio 1](assets/31_6_1.wav)
+- [Audio 2](assets/31_6_2.wav)
 
 ### 📍AV-Odyssey Bench
 
