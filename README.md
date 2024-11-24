@@ -33,74 +33,12 @@ Please refer to our project page https://av-odyssey.github.io/ for exploring mor
 
 ### 📍DeafTest
 
-<div align="center" style="margin: 20px 0;">
-  <!-- 图片 -->
-  <img src="assets/loudness-1.svg" alt="Image" width="300" />
-
-  <!-- 音频 1 -->
-  <div style="margin-top: 20px;">
-    <p><strong>[audio1]</strong></p>
-    <audio controls>
-      <source src="assets/31_6_1.mp3" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
-  </div>
-
-  <!-- 音频 2 -->
-  <div style="margin-top: 20px;">
-    <p><strong>[audio2]</strong></p>
-    <audio controls>
-      <source src="assets/31_6_2.wav" type="audio/mpeg">
-      Your browser does not support the audio element.
-    </audio>
-  </div>
-</div>
-
-- [Audio 1](c)
-- [Audio 2](assets/31_6_2.wav)
-
-- <video width="80%" height="auto" style="display: block; margin: 0 auto;" controls autoplay loop src="assets/31_6_1.mp3"></video>
+<img src="assets/deaftest.png" width="50%" />
 
 
 ### 📍AV-Odyssey Bench
 
-<div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start;">
-  <!-- 第一列：图片 1，竖向居中 -->
-  <div style="flex: 0 0 48%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
-    <h3>Question</h3>
-    <img src="assets/error2-1.svg" alt="问题图片" style="width: 100%; margin-bottom: 0px;">
-  </div>
-  <!-- 第二列：图片 2 + 音频 -->
-  <div style="flex: 0 0 48%; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center;">
-    <!-- 音频 -->
-    <div style="margin-bottom: 30px;">
-      <p>[audio1]</p>
-      <audio controls>
-        <source src="assets/2_26_1.wav" type="audio/mpeg">
-        您的浏览器不支持音频元素。
-      </audio>
-    </div>
-    <!-- 图像容器 -->
-    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; align-items: center; justify-items: center;">
-      <div>
-        <p>[img1]</p>
-        <img src="assets/2_26_1.png" alt="图像 1" style="width: 70%; margin-bottom: 10px;">
-      </div>
-      <div>
-        <p>[img2]</p>
-        <img src="assets/2_26_2.png" alt="图像 2" style="width: 70%; margin-bottom: 10px;">
-      </div>
-      <div>
-        <p>[img3]</p>
-        <img src="assets/2_26_3.png" alt="图像 3" style="width: 70%; margin-bottom: 10px;">
-      </div>
-      <div>
-        <p>[img4]</p>
-        <img src="assets/2_26_4.png" alt="图像 4" style="width: 70%; margin-bottom: 10px;">
-      </div>
-    </div>
-  </div>
-</div>
+<img src="assets/data2.png" width="50%" />
 
 
 
