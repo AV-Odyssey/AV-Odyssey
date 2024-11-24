@@ -1,4 +1,4 @@
-# <img src="assets/logo.png" style="zoom:8%;" />  AV-Odyssey: Can Your Multimodal LLMs Really Understand Audio-Visual Information?
+# <img src="assets/logo.png" style="zoom:1%;" />  AV-Odyssey: Can Your Multimodal LLMs Really Understand Audio-Visual Information?
 
 ![AVQA](https://img.shields.io/badge/Task-AVQA-red) 
 ![Multi-Modal](https://img.shields.io/badge/Task-Multi--Modal-red) 
