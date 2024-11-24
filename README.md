@@ -41,7 +41,7 @@ Please refer to our project page https://av-odyssey.github.io/ for exploring mor
 
 ### 📍AV-Odyssey Bench
 <div align="center">
-  <img src="assets/data2.png" width="100%" />
+  <img src="assets/demo-1.png" width="100%" />
 </div>
 
 
