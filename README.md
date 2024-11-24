@@ -33,7 +33,11 @@ Please refer to our project page https://av-odyssey.github.io/ for exploring mor
 
 ### 📍DeafTest
 
-<img src="assets/deaftest.png" width="100%" />
+<img src="assets/deaftest.png" width="80%" />
+
+<div align="center">
+  <img src="assets/deaftest.png" width="80%" />
+</div>
 
 
 ### 📍AV-Odyssey Bench
