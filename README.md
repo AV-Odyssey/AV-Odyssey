@@ -33,7 +33,6 @@ Please refer to our project page https://av-odyssey.github.io/ for exploring mor
 
 ### 📍DeafTest
 
-<img src="assets/deaftest.png" width="80%" />
 
 <div align="center">
   <img src="assets/deaftest.png" width="80%" />
@@ -41,9 +40,9 @@ Please refer to our project page https://av-odyssey.github.io/ for exploring mor
 
 
 ### 📍AV-Odyssey Bench
-
-<img src="assets/data2.png" width="100%" />
-
+<div align="center">
+  <img src="assets/data2.png" width="100%" />
+</div>
 
 
 ## 🔍 Dataset
