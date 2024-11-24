@@ -31,13 +31,6 @@ Recently, multimodal large language models (MLLMs), such as GPT-4o, Gemini 1.5 P
 
 Please refer to our project page https://av-odyssey.github.io/ for exploring more examples.
 
-### 📍DeafTest
-
-
-<div align="center">
-  <img src="assets/deaftest.png" width="80%" />
-</div>
-
 
 ### 📍AV-Odyssey Bench
 <div align="center">
