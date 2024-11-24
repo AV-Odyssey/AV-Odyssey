@@ -33,35 +33,26 @@ Please refer to our project page https://av-odyssey.github.io/ for exploring mor
 
 ### 📍DeafTest
 
-<div class="columns is-centered m-6">
-  <div class="column is-full has-text-centered content">
-    <div class="box m-5">
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class='content has-text-centered'>
-          <div style="display: flex; justify-content: space-between; align-items: center;">
-            <div style="flex: 1;">
-              <img src="assets/loudness-1.svg" alt="Image" style="max-width: 100%;">
-            </div>
-            <div style="flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
-              <div style="margin-bottom: 20px;">
-                <p>[audio1]</p>
-                <audio controls>
-                  <source src="assets/31_6_1.wav" type="audio/mpeg">
-                  您的浏览器不支持音频元素。
-                </audio>
-              </div>
-              <div>
-                <p>[audio2]</p>
-                <audio controls>
-                  <source src="assets/31_6_2.wav" type="audio/mpeg">
-                  您的浏览器不支持音频元素。
-                </audio>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+<div align="center" style="margin: 20px 0;">
+  <!-- 图片 -->
+  <img src="assets/loudness-1.svg" alt="Image" width="300" />
+
+  <!-- 音频 1 -->
+  <div style="margin-top: 20px;">
+    <p><strong>[audio1]</strong></p>
+    <audio controls>
+      <source src="assets/31_6_1.wav" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
+  </div>
+
+  <!-- 音频 2 -->
+  <div style="margin-top: 20px;">
+    <p><strong>[audio2]</strong></p>
+    <audio controls>
+      <source src="assets/31_6_2.wav" type="audio/mpeg">
+      Your browser does not support the audio element.
+    </audio>
   </div>
 </div>
 
