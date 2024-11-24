@@ -41,7 +41,7 @@ Please refer to our project page https://av-odyssey.github.io/ for exploring mor
   <div style="margin-top: 20px;">
     <p><strong>[audio1]</strong></p>
     <audio controls>
-      <source src="assets/31_6_1.wav" type="audio/mpeg">
+      <source src="assets/31_6_1.mp3" type="audio/mpeg">
       Your browser does not support the audio element.
     </audio>
   </div>
