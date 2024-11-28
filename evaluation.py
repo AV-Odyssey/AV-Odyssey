@@ -83,7 +83,7 @@ def avlm_task_process(model, json_data):
 def avlm_model_select(model_name, image_folder=None, video_folder=None, audio_folder=None):
     if model_name == "videollama":   
         from avlm_model.videollama import videollama_evaluation as model_build
-        model_path = "./audio_visual_model_evaluation/avlm_model_weight/Video-LLaMA-Series"
+        model_path = "./avlm_model_weight/Video-LLaMA-Series"
         model = model_build(model_path=model_path, image_folder=image_folder, video_folder=video_folder, audio_folder=audio_folder)
     
     return model
@@ -99,12 +99,12 @@ if __name__ == "__main__":
 
     # 定义Parquet文件路径
     file_path = [
-                './audio_visual_model_evaluation/data/AV_Odyssey_Bench/av_odyssey_part1.parquet',
-                 './audio_visual_model_evaluation/data/AV_Odyssey_Bench/av_odyssey_part2.parquet',
-                 './audio_visual_model_evaluation/data/AV_Odyssey_Bench/av_odyssey_part3.parquet',
-                 './audio_visual_model_evaluation/data/AV_Odyssey_Bench/av_odyssey_part4.parquet',
-                 './audio_visual_model_evaluation/data/AV_Odyssey_Bench/av_odyssey_part5.parquet',
-                 './audio_visual_model_evaluation/data/AV_Odyssey_Bench/av_odyssey_part6.parquet'
+                './data/AV_Odyssey_Bench/av_odyssey_part1.parquet',
+                 './data/AV_Odyssey_Bench/av_odyssey_part2.parquet',
+                 './data/AV_Odyssey_Bench/av_odyssey_part3.parquet',
+                 './data/AV_Odyssey_Bench/av_odyssey_part4.parquet',
+                 './data/AV_Odyssey_Bench/av_odyssey_part5.parquet',
+                 './data/AV_Odyssey_Bench/av_odyssey_part6.parquet'
                  ]
     question_type_dict = {}
 
@@ -141,7 +141,7 @@ if __name__ == "__main__":
     for current_model in current_model_list:
         if model_type == 'audio-visual-llm':
             # for avlm
-            model = avlm_model_select(current_model, image_folder = task_folder, video_folder = task_folder, audio_folder = task_folder)
+            model = avlm_model_select(current_model)
 
         all_evaluation_results = []
         for current_question_id in question_id_list:
@@ -161,7 +161,7 @@ if __name__ == "__main__":
 
             all_evaluation_results = all_evaluation_results + cleaned_evaluation_data
 
-        with open('./audio_visual_model_evaluation/MLLM_evaluation/code/new_avlm_results/'+'_'+current_model+'.jsonl', 'w') as f:
+        with open('./avlm_results/'+'_'+current_model+'.jsonl', 'w') as f:
             for item in all_evaluation_results:
                 item.pop("answer")
                 f.write(json.dumps(item) + '\n')
