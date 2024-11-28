@@ -56,11 +56,11 @@ Please send an email to **[libohao1998@gmail.com](mailto:libohao1998@gmail.com)*
 
 ### Run Evaluation on AV-Odyssey
 
-We now provide an example code for the evaluation of the Video-Llama model. 
+We now provide an example code for the evaluation of the [Video-Llama](https://github.com/DAMO-NLP-SG/Video-LLaMA) model. 
 
-1. Download the AV-Odyssey data from [[Huggingface](https://huggingface.co/datasets/AV-Odyssey/AV_Odyssey_Bench)] and put it into your specified folder.
+1. Download the AV-Odyssey data from [[Huggingface](https://huggingface.co/datasets/AV-Odyssey/AV_Odyssey_Bench)] and put it into your specified folder. In our code, we download AV-Odyssey data into [data](https://github.com/AV-Odyssey/AV-Odyssey/tree/main/data).
 
-2. Download the pre-trained weights of the evaluated model. You need to install all the required packages of the evaluated model.
+2. Download the pre-trained weights of the evaluated model. In our code, we download [Video-Llama weight](https://huggingface.co/DAMO-NLP-SG/Video-LLaMA-Series) into [avlm_model_weight](https://github.com/AV-Odyssey/AV-Odyssey/tree/main/avlm_model_weight). You need to install all the required packages of the evaluated model.
 
 Then, run
 
@@ -70,6 +70,7 @@ python evaluation.py
 
 We specify the model in evaluate.py.
 
+The result will be collected into [avlm_results](https://github.com/AV-Odyssey/AV-Odyssey/tree/main/avlm_results).
 
 
 ## 🏆 Leaderboard
