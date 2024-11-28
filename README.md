@@ -54,7 +54,13 @@ Please send an email to **[libohao1998@gmail.com](mailto:libohao1998@gmail.com)*
 
 ## 🔮 Evaluation Pipeline
 
+### Run Evaluation on AV-Odyssey
 
+We now provide example code for evaluation the Video-Llama model.  You need to install all the required packages of the evaluated model.
+
+```
+python evaluation.py
+```
 
 
 
