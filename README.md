@@ -56,11 +56,19 @@ Please send an email to **[libohao1998@gmail.com](mailto:libohao1998@gmail.com)*
 
 ### Run Evaluation on AV-Odyssey
 
-We now provide example code for evaluation the Video-Llama model.  You need to install all the required packages of the evaluated model.
+We now provide an example code for the evaluation of the Video-Llama model. 
+
+1. Download the AV-Odyssey data from [[Huggingface](https://huggingface.co/datasets/AV-Odyssey/AV_Odyssey_Bench)] and put it into your specified folder.
+
+2. Download the pre-trained weights of the evaluated model. You need to install all the required packages of the evaluated model.
+
+Then, run
 
 ```
 python evaluation.py
 ```
+
+We specify the model in evaluate.py.
 
 
 
