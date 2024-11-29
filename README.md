@@ -72,6 +72,22 @@ We specify the model in evaluate.py.
 
 The result will be collected into [avlm_results](https://github.com/AV-Odyssey/AV-Odyssey/tree/main/avlm_results).
 
+Note:
+
+In the data files, we upload the bytes of source file (e.g., image, video and audio), so the reading code should be revised:
+
+before:
+
+```
+image = Image.open(image_path).convert("RGB")
+```
+
+now:
+
+```
+image = Image.open(io.BytesIO(image_byte)).convert("RGB")
+```
+
 
 ## 🏆 Leaderboard
 
