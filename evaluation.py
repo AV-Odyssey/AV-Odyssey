@@ -93,11 +93,9 @@ if __name__ == "__main__":
     import pyarrow.parquet as pq
 
     def read_parquet_file(file_path):
-        # 读取Parquet文件
         table = pq.read_table(file_path)
         return table
 
-    # 定义Parquet文件路径
     file_path = [
                 './data/AV_Odyssey_Bench/av_odyssey_part1.parquet',
                  './data/AV_Odyssey_Bench/av_odyssey_part2.parquet',
@@ -109,9 +107,7 @@ if __name__ == "__main__":
     question_type_dict = {}
 
     for par_file in file_path:
-        # 读取Parquet文件
         table = read_parquet_file(par_file)
-        # 将PyArrow Table转换为Pandas DataFrame（如果需要）
         df = table.to_pandas()
 
         for index, row in df.iterrows():
