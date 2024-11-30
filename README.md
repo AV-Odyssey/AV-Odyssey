@@ -74,7 +74,7 @@ The result will be collected into [avlm_results](https://github.com/AV-Odyssey/A
 
 Note:
 
-In the data files, we upload the bytes of source file (e.g., image, video and audio), so the reading code should be revised:
+In the data files, we upload the bytes of the source file (e.g., images, videos, and audio). Therefore, the file-reading logic needs to be updated as follows:
 
 before:
 
