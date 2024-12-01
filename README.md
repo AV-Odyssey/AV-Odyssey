@@ -65,7 +65,7 @@ We now provide an example code for the evaluation of the [Video-Llama](https://g
 Then, run
 
 ```
-python evaluation.py
+python evaluation.py --model videollama
 ```
 
 We specify the model in evaluate.py.
