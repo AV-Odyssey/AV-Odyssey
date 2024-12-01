@@ -4,6 +4,13 @@ import torch
 from tqdm import tqdm
 import pdb
 import numpy as np
+import argparse
+import pyarrow.parquet as pq
+
+vlm_model_list = ["Internvl2_8B", "Qwen2vl", "minicpm_v", "blip3", "vila" ]
+alm_model_list = ["Qwen2audio", "Qwenaudio", "SALMONN", "typhoonaudio"]
+avlm_model_list = ["unified-io-large", "unified-io-xl", "unified-io-xxl", "onellm", "pandagpt", "videollama", "videollama2", "anygpt", "nextgpt", "gemini", "gpt", "vita", "reka"]
+model_type_list = ["audio-visual-llm", "visionllm", "audiollm"]
 
 def parse_multi_choice_response(response, all_choices, index2ans):
     """
@@ -60,17 +67,21 @@ def parse_multi_choice_response(response, all_choices, index2ans):
 
     return pred_index
 
-
-def avlm_task_process(model, json_data):
+def vlm_task_process(model, json_data):
     result_data = []
     for current_data in tqdm(json_data):
-        if "image" in current_data['data_type']:
-            # for image and audio
-            prediction = model.evaluate_image_audio_text(current_data['image_path'], current_data['audio_path'], current_data['question'], [current_data['option_A'], current_data['option_B'], current_data['option_C'], current_data['option_D']])
-        if "video" in current_data['data_type']:
-            # for video and audio
-            prediction = model.evaluate_video_audio_text(current_data['video_path'], current_data['audio_path'], current_data['question'], [current_data['option_A'], current_data['option_B'], current_data['option_C'], current_data['option_D']])
-        
+        try:
+            if "image" in current_data['data_type']:
+                # for image
+                prediction = model.evaluate_image_text(current_data['image_path'], current_data['audio_path'], current_data['question'], [current_data['option_A'], current_data['option_B'], current_data['option_C'], current_data['option_D']])
+            if "video" in current_data['data_type']:
+                # for video
+                prediction = model.evaluate_video_text(current_data['video_path'], current_data['audio_path'], current_data['question'], [current_data['option_A'], current_data['option_B'], current_data['option_C'], current_data['option_D']])
+        except Exception as e:
+            prediction = "error!"
+            print(e)
+
+        print(prediction)
         result_data.append({
             "question_id": current_data['question_id'],
             "answer": current_data['answer'],
@@ -80,32 +91,99 @@ def avlm_task_process(model, json_data):
     return result_data
 
 
+def alm_task_process(model, json_data):
+    result_data = []
+    for current_data in tqdm(json_data):
+        '''
+        try:
+            # for audio
+            if "image" in current_data['data_type']:
+                prediction = model.evaluate_image_audio_text(current_data['image_path'], current_data['audio_path'], current_data['question'], [current_data['option_A'], current_data['option_B'], current_data['option_C'], current_data['option_D']])
+            if "video" in current_data['data_type']:
+                prediction = model.evaluate_video_audio_text(current_data['video_path'], current_data['audio_path'], current_data['question'], [current_data['option_A'], current_data['option_B'], current_data['option_C'], current_data['option_D']])
+            print(prediction)
+            
+        except Exception as e:
+            prediction = "error!"
+            print(e)
+        '''
+        if "image" in current_data['data_type']:
+            prediction = model.evaluate_image_audio_text(current_data['image_path'], current_data['audio_path'], current_data['question'], [current_data['option_A'], current_data['option_B'], current_data['option_C'], current_data['option_D']])
+        if "video" in current_data['data_type']:
+            prediction = model.evaluate_video_audio_text(current_data['video_path'], current_data['audio_path'], current_data['question'], [current_data['option_A'], current_data['option_B'], current_data['option_C'], current_data['option_D']])
+        
+        print(prediction)
+        result_data.append({
+                "question_id": current_data['question_id'],
+                "answer": current_data['answer'],
+                "prediction": prediction
+            })
+    return result_data
+
+def avlm_task_process(model, json_data):
+    result_data = []
+    for current_data in tqdm(json_data):
+        
+        if "image" in current_data['data_type']:
+            # for image and audio
+            prediction = model.evaluate_image_audio_text(current_data['image_path'], current_data['audio_path'], current_data['question'], [current_data['option_A'], current_data['option_B'], current_data['option_C'], current_data['option_D']])
+        if "video" in current_data['data_type']:
+            # for video and audio
+            prediction = model.evaluate_video_audio_text(current_data['video_path'], current_data['audio_path'], current_data['question'], [current_data['option_A'], current_data['option_B'], current_data['option_C'], current_data['option_D']])
+        
+        print(prediction)
+        result_data.append({
+            "question_id": current_data['question_id'],
+            "answer": current_data['answer'],
+            "prediction": prediction
+        })
+
+    return result_data
+
+def vlm_model_select(model_name, image_folder=None, video_folder=None):
+    raise NotImplementedError("Not implement vision language models.")
+
+def alm_model_select(model_name, audio_folder=None):
+    raise NotImplementedError("Not implement audio language models.")
+
 def avlm_model_select(model_name, image_folder=None, video_folder=None, audio_folder=None):
     if model_name == "videollama":   
-        from avlm_model.videollama import videollama_evaluation as model_build
+        from avlm_model.videollama.videollama import videollama_evaluation as model_build
         model_path = "./avlm_model_weight/Video-LLaMA-Series"
         model = model_build(model_path=model_path, image_folder=image_folder, video_folder=video_folder, audio_folder=audio_folder)
     
     return model
 
-if __name__ == "__main__":
-
-    import pyarrow.parquet as pq
-
-    def read_parquet_file(file_path):
+def read_parquet_file(file_path):
         table = pq.read_table(file_path)
         return table
 
-    file_path = [
-                './data/AV_Odyssey_Bench/av_odyssey_part1.parquet',
-                 './data/AV_Odyssey_Bench/av_odyssey_part2.parquet',
-                 './data/AV_Odyssey_Bench/av_odyssey_part3.parquet',
-                 './data/AV_Odyssey_Bench/av_odyssey_part4.parquet',
-                 './data/AV_Odyssey_Bench/av_odyssey_part5.parquet',
-                 './data/AV_Odyssey_Bench/av_odyssey_part6.parquet'
-                 ]
-    question_type_dict = {}
+if __name__ == "__main__":
 
+    parser = argparse.ArgumentParser(description='test')
+    parser.add_argument('--model',default="", type=str, help ='input files')
+    args = parser.parse_args()
+
+    
+    model_name = args.model
+    
+    if model_name in vlm_model_list: # vision language model
+        model = vlm_model_select(model_name, image_folder = task_folder, video_folder = task_folder)
+    elif model_name in alm_model_list: # audio language model
+        model = alm_model_select(model_name, audio_folder = task_folder)
+    elif model_name in avlm_model_list: # audio-visual language model
+        model = avlm_model_select(model_name, image_folder = task_folder, video_folder = task_folder, audio_folder = task_folder)
+
+
+    file_path = [
+                # './data/av_odyssey_part1.parquet',
+                #  './data/av_odyssey_part2.parquet',
+                 './data/av_odyssey_part3.parquet',
+                #  './data/av_odyssey_part4.parquet',
+                #  './data/av_odyssey_part5.parquet',
+                #  './data/av_odyssey_part6.parquet'
+                ]
+    question_type_dict = {}    
     for par_file in file_path:
         table = read_parquet_file(par_file)
         df = table.to_pandas()
@@ -115,7 +193,6 @@ if __name__ == "__main__":
             row_dict = row.to_dict()
             question_type_id = row_dict.get('question_type_id')
             row_dict['subpart'] = row_dict.pop('subfield')
-
             row_dict['image_path'] = [row_dict['image_1'], row_dict['image_2'],  row_dict['image_3'], row_dict['image_4']] if row_dict['image_2'] else [row_dict['image_1']]
             row_dict['audio_path'] = [row_dict['audio_1'], row_dict['audio_2'] , row_dict['audio_3'], row_dict['audio_4']] if row_dict['audio_2'] else [row_dict['audio_1']]
             row_dict['option_A'] = row_dict['options'][0]
@@ -123,42 +200,32 @@ if __name__ == "__main__":
             row_dict['option_C'] = row_dict['options'][2]
             row_dict['option_D'] = row_dict['options'][3]
             row_dict['video_path'] = [row_dict.pop('video_1')]
-            
+
             row_dict.pop('options')
 
             if question_type_id not in question_type_dict:
                 question_type_dict[question_type_id] = []
             question_type_dict[question_type_id].append(row_dict)
+    question_id_list = [i for i in range(13, 14)] 
 
-    question_id_list = [i for i in range(1, 27)]
+    all_evaluation_results = []
+    for current_question_id in question_id_list:
+        current_json_data = question_type_dict[current_question_id]
+        task_name = 'task' + str(current_question_id)
 
-    model_type = "audio-visual-llm" 
-    current_model_list = ["videollama"]
-    for current_model in current_model_list:
-        if model_type == 'audio-visual-llm':
-            # for avlm
-            model = avlm_model_select(current_model)
+        # clean the answer, following MMMU (https://github.com/MMMU-Benchmark/MMMU)
+        cleaned_evaluation_data = []
+        for data, prediction in zip(current_json_data, evaluation_result):
+            option_list = {'A': data['option_A'], 'B': data['option_B'], 'C': data['option_C'], 'D': data['option_D']}
+            answer = parse_multi_choice_response(prediction['prediction'], ['A', 'B', 'C', 'D'], option_list)
+            prediction['prediction'] = answer
+            cleaned_evaluation_data.append(prediction)
 
-        all_evaluation_results = []
-        for current_question_id in question_id_list:
-            current_json_data = question_type_dict[current_question_id]
+        all_evaluation_results = all_evaluation_results + cleaned_evaluation_data
 
-            with torch.no_grad():
-                if model_type == 'audio-visual-llm':
-                    evaluation_result = avlm_task_process(model, current_json_data)
-                    
-            # clean the answer
-            cleaned_evaluation_data = []
-            for data, prediction in zip(current_json_data, evaluation_result):
-                option_list = {'A': data['option_A'], 'B': data['option_B'], 'C': data['option_C'], 'D': data['option_D']}
-                answer = parse_multi_choice_response(prediction, ['A', 'B', 'C', 'D'], option_list)
-                prediction['prediction'] = answer
-                cleaned_evaluation_data.append(prediction)
 
-            all_evaluation_results = all_evaluation_results + cleaned_evaluation_data
-
-        with open('./avlm_results/'+'_'+current_model+'.jsonl', 'w') as f:
-            for item in all_evaluation_results:
-                item.pop("answer")
-                f.write(json.dumps(item) + '\n')
-        
+    with open('avlm_results/'+'_'+model_name+'.jsonl', 'w') as f:
+        for item in all_evaluation_results:
+            item.pop("answer")
+            f.write(json.dumps(item) + '\n')
+    
