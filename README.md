@@ -55,7 +55,7 @@ Please send an email to **[libohao1998@gmail.com](mailto:libohao1998@gmail.com)*
 
 ### Run Evaluation on AV-Odyssey
 
-We now provide an example code for the evaluation of the [Video-Llama](https://github.com/DAMO-NLP-SG/Video-LLaMA) model. 
+We now provide an example code for the evaluation of the [Video-Llama](https://github.com/DAMO-NLP-SG/Video-LLaMA) model. You can put model-related code under `avlm_model` folder.
 
 1. Download the AV-Odyssey data from [[🤗 AV-Odyssey Dataset](https://huggingface.co/datasets/AV-Odyssey/AV_Odyssey_Bench)] and put it into your specified folder. In our code, we download AV-Odyssey data into [data](https://github.com/AV-Odyssey/AV-Odyssey/tree/main/data).
 
