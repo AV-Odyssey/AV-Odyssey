@@ -155,8 +155,8 @@ def avlm_model_select(model_name, image_folder=None, video_folder=None, audio_fo
     return model
 
 def read_parquet_file(file_path):
-        table = pq.read_table(file_path)
-        return table
+    table = pq.read_table(file_path)
+    return table
 
 if __name__ == "__main__":
 
@@ -173,7 +173,6 @@ if __name__ == "__main__":
         model = alm_model_select(model_name, audio_folder = task_folder)
     elif model_name in avlm_model_list: # audio-visual language model
         model = avlm_model_select(model_name, image_folder = task_folder, video_folder = task_folder, audio_folder = task_folder)
-
 
     file_path = [
                 # './data/av_odyssey_part1.parquet',
