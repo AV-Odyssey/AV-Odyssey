@@ -140,23 +140,23 @@ def avlm_task_process(model, json_data):
 
     return result_data
 
-def vlm_model_select(model_name, image_folder=None, video_folder=None):
+def vlm_model_select(model_name):
     raise NotImplementedError("Not implement vision language models.")
 
-def alm_model_select(model_name, audio_folder=None):
+def alm_model_select(model_name):
     raise NotImplementedError("Not implement audio language models.")
 
-def avlm_model_select(model_name, image_folder=None, video_folder=None, audio_folder=None):
+def avlm_model_select(model_name):
     if model_name == "videollama":   
         from avlm_model.videollama.videollama import videollama_evaluation as model_build
         model_path = "./avlm_model_weight/Video-LLaMA-Series"
-        model = model_build(model_path=model_path, image_folder=image_folder, video_folder=video_folder, audio_folder=audio_folder)
+        model = model_build(model_path=model_path)
     
     return model
 
 def read_parquet_file(file_path):
-    table = pq.read_table(file_path)
-    return table
+        table = pq.read_table(file_path)
+        return table
 
 if __name__ == "__main__":
 
@@ -168,19 +168,19 @@ if __name__ == "__main__":
     model_name = args.model
     
     if model_name in vlm_model_list: # vision language model
-        model = vlm_model_select(model_name, image_folder = task_folder, video_folder = task_folder)
+        model = vlm_model_select(model_name)
     elif model_name in alm_model_list: # audio language model
-        model = alm_model_select(model_name, audio_folder = task_folder)
+        model = alm_model_select(model_name)
     elif model_name in avlm_model_list: # audio-visual language model
-        model = avlm_model_select(model_name, image_folder = task_folder, video_folder = task_folder, audio_folder = task_folder)
+        model = avlm_model_select(model_name)
 
     file_path = [
-                # './data/av_odyssey_part1.parquet',
-                #  './data/av_odyssey_part2.parquet',
-                 './data/av_odyssey_part3.parquet',
-                #  './data/av_odyssey_part4.parquet',
-                #  './data/av_odyssey_part5.parquet',
-                #  './data/av_odyssey_part6.parquet'
+                './data/av_odyssey_part1.parquet',
+                './data/av_odyssey_part2.parquet',
+                './data/av_odyssey_part3.parquet',
+                './data/av_odyssey_part4.parquet',
+                './data/av_odyssey_part5.parquet',
+                './data/av_odyssey_part6.parquet'
                 ]
     question_type_dict = {}    
     for par_file in file_path:
@@ -205,12 +205,20 @@ if __name__ == "__main__":
             if question_type_id not in question_type_dict:
                 question_type_dict[question_type_id] = []
             question_type_dict[question_type_id].append(row_dict)
-    question_id_list = [i for i in range(13, 14)] 
+    question_id_list = [i for i in range(1, 27)] 
 
     all_evaluation_results = []
     for current_question_id in question_id_list:
         current_json_data = question_type_dict[current_question_id]
         task_name = 'task' + str(current_question_id)
+
+        with torch.no_grad():
+            if model_name in vlm_model_list: # vision language model
+                evaluation_result = vlm_task_process(model, current_json_data)
+            elif model_name in alm_model_list: # audio language model
+                evaluation_result = alm_task_process(model, current_json_data)
+            elif model_name in avlm_model_list: # audio-visual language model
+                evaluation_result = avlm_task_process(model, current_json_data)
 
         # clean the answer, following MMMU (https://github.com/MMMU-Benchmark/MMMU)
         cleaned_evaluation_data = []

@@ -45,7 +45,7 @@ from decord import VideoReader
 import random as rnd
 
 class videollama_evaluation(nn.Module):
-    def __init__(self, model_path="./avlm_model_weight/Video-LLaMA-Series", image_folder=None, video_folder=None, audio_folder=None):
+    def __init__(self, model_path="./avlm_model_weight/Video-LLaMA-Series"):
         super().__init__()  # Ensure this is called first
         self.model_path = model_path
         self.cfg = OmegaConf.load("./avlm_model_config/video_llama_eval_withaudio.yaml")
@@ -63,9 +63,6 @@ class videollama_evaluation(nn.Module):
         self.vis_processor = registry.get_processor_class(self.vis_processor_cfg.name).from_config(self.vis_processor_cfg)
         self.chat = Chat(self.model, self.vis_processor)
 
-        self.image_folder = image_folder
-        self.video_folder = video_folder
-        self.audio_folder = audio_folder
         self.question_prompt = "Answer with the option's letter from the given choices directly."
     
     def load_image(self, image_path):
