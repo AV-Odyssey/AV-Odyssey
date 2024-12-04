@@ -11,7 +11,7 @@ Official repository for the paper "[AV-Odyssey: Can Your Multimodal LLMs Really 
 
 🌟 For more details, please refer to the project page with data examples: [https://av-odyssey.github.io/](https://av-odyssey.github.io/).
 
-[[🌐 Webpage](https://av-odyssey.github.io/)] [[📖 Paper]()] [[🤗 AV-Odyssey Dataset](https://huggingface.co/datasets/AV-Odyssey/AV_Odyssey_Bench)] [[🤗 Deaftest Dataset](https://huggingface.co/datasets/AV-Odyssey/Deaftest_dataset)] [[🏆 Leaderboard](https://huggingface.co/spaces/AV-Odyssey/AV_Odyssey_Bench_Leaderboard)]
+[[🌐 Webpage](https://av-odyssey.github.io/)] [[📖 Paper](https://arxiv.org/abs/2412.02611)] [[🤗 AV-Odyssey Dataset](https://huggingface.co/datasets/AV-Odyssey/AV_Odyssey_Bench)] [[🤗 Deaftest Dataset](https://huggingface.co/datasets/AV-Odyssey/Deaftest_dataset)] [[🏆 Leaderboard](https://huggingface.co/spaces/AV-Odyssey/AV_Odyssey_Bench_Leaderboard)]
 
 
 ---
@@ -86,5 +86,13 @@ The result will be collected into [avlm_results](https://github.com/AV-Odyssey/A
 If you find our work helpful for your research, please consider citing our work.   
 
 ```bibtex
-
+@misc{gong2024avodysseybenchmultimodalllms,
+      title={AV-Odyssey Bench: Can Your Multimodal LLMs Really Understand Audio-Visual Information?}, 
+      author={Kaixiong Gong and Kaituo Feng and Bohao Li and Yibing Wang and Mofan Cheng and Shijia Yang and Jiaming Han and Benyou Wang and Yutong Bai and Zhuoran Yang and Xiangyu Yue},
+      year={2024},
+      eprint={2412.02611},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2412.02611}, 
+}
 ```
