@@ -17,6 +17,7 @@ Official repository for the paper "[AV-Odyssey: Can Your Multimodal LLMs Really 
 ---
 
 ## 🔥 News
+* **`2024.12.22`** 🌟 [AV-Odyssey](https://arxiv.org/abs/2412.02611) can be evaluated on [lmms-eval](https://github.com/EvolvingLMMs-Lab/lmms-eval), thanks to [kennymckormick](https://github.com/pufanyi) and [Luodian](https://github.com/Luodian).
 * **`2024.11.24`** 🌟 We release AV-Odyssey, the first-ever comprehensive evaluation benchmark to explore whether MLLMs really understand audio-visual information.
 
 
